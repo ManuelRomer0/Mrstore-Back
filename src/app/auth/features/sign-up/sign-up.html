@@ -1,0 +1,94 @@
+<section class="bg-gray-50 dark:bg-gray-900">
+    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+
+        <!-- Logo e ícono -->
+        <a
+            class="relative -top-2 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+            MrStore
+        </a>
+
+        <svg class="w-6 h-6 text-gray-800 dark:text-white" style="transform: translateY(-8px);" aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m6.072 10.072 2 2 6-4m3.586 4.314.9-.9a2 2 0 0 0 0-2.828l-.9-.9a2 2 0 0 1-.586-1.414V5.072a2 2 0 0 0-2-2H13.8a2 2 0 0 1-1.414-.586l-.9-.9a2 2 0 0 0-2.828 0l-.9.9a2 2 0 0 1-1.414.586H5.072a2 2 0 0 0-2 2v1.272a2 2 0 0 1-.586 1.414l-.9.9a2 2 0 0 0 0 2.828l.9.9a2 2 0 0 1 .586 1.414v1.272a2 2 0 0 0 2 2h1.272a2 2 0 0 1 1.414.586l.9.9a2 2 0 0 0 2.828 0l.9-.9a2 2 0 0 1 1.414-.586h1.272a2 2 0 0 0 2-2V13.8a2 2 0 0 1 .586-1.414Z" />
+        </svg>
+
+        <!-- Contenedor principal -->
+        <div
+            class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                    Crear Cuenta
+                </h1>
+
+                <form class="space-y-4 md:space-y-6" [formGroup]="form" (ngSubmit)="Submit()">
+
+                    <!-- Correo electrónico -->
+                    <div>
+                        <label for="identifier" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Correo Electrónico o Usuario
+                        </label>
+                        <input type="identifier" id="identifier" formControlName="identifier" placeholder="name@gmail.com"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-rose-600 focus:border-rose-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    </div>
+
+                    <!-- Contraseña -->
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Contraseña
+                        </label>
+                        <input type="password" id="password" formControlName="password" placeholder="••••••••"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-rose-600 focus:border-rose-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            required>
+                    </div>
+
+                    <!-- Confirmar contraseña -->
+                    <div>
+                        <label for="confirmPassword"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Confirmar Contraseña
+                        </label>
+                        <input type="password" id="confirmPassword" formControlName="confirmPassword"
+                            placeholder="••••••••"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-rose-600 focus:border-rose-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            required>
+                    </div>
+
+                    <!-- Términos y condiciones -->
+                    <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                            <input id="terms" aria-describedby="terms" type="checkbox"
+                                class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-rose-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-rose-600 dark:ring-offset-gray-800"
+                                required>
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label for="terms" class="font-light text-gray-500 dark:text-gray-300">
+                                Acepto los
+                                <a href="#" class="font-medium text-rose-600 hover:underline dark:text-rose-500">
+                                    Términos y Condiciones
+                                </a>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Botón de crear cuenta -->
+                    <button type="submit"
+                        class="w-full text-white bg-rose-600 hover:bg-rose-700 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-rose-600 dark:hover:bg-rose-700 dark:focus:ring-rose-800">
+                        Crea tu cuenta
+                    </button>
+
+                    <!-- Enlace para iniciar sesión -->
+                    <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                        ¿Ya tienes cuenta?
+                        <a href="http://localhost:4200/log-in"
+                            class="font-medium text-rose-600 hover:underline dark:text-rose-500">
+                            Inicia Sesión
+                        </a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+

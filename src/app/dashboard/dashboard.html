@@ -1,0 +1,18 @@
+<div class="min-h-screen flex flex-col items-center justify-center bg-gray-100 relative">
+
+    <!-- Botón de Cerrar Sesión -->
+    <button (click)="logout()"
+        class="absolute top-4 right-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow-md transition duration-300 ease-in-out">
+        Cerrar sesión
+    </button>
+
+    <!-- Contenido de bienvenida -->
+    <div class="bg-white shadow-lg rounded-2xl p-8 text-center max-w-md w-full">
+        <h1 class="text-3xl font-bold text-gray-800">
+            ¡Bienvenido, <span class="text-blue-600">{{username}}</span>! 👋
+        </h1>
+        <p class="mt-4 text-gray-600">
+            Nos alegra verte de nuevo en tu panel de control.
+        </p>
+    </div>
+</div>
