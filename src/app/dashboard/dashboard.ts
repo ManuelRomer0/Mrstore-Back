@@ -50,7 +50,9 @@ export class Dashboard implements OnInit {
 
   // Cargar el username de la sesión actual
   loadSessionUser() {
-    this.username = JSON.parse(localStorage.getItem('user')!).username;
+    this.username = JSON.parse(
+      (localStorage.getItem('user') || sessionStorage.getItem('user'))!
+    ).username;
   }
 
   logout() {
