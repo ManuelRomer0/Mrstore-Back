@@ -39,13 +39,13 @@ export class AuthService {
   logIn(identifier: string, password: string, rememberMe: boolean) {
     return this.logInRequest(identifier, password).subscribe({
       next: (res) => {
+        const userData = this.jwtHelper.decodeToken(res.access_token);
         if (rememberMe) {
           if (res.access_token) {
             this._authStateService.setRemember({
               access_token: res.access_token,
             });
 
-            const userData = this.jwtHelper.decodeToken(res.access_token);
             localStorage.setItem('user', JSON.stringify(userData));
           }
 
@@ -55,6 +55,8 @@ export class AuthService {
             this._authStateService.setSession({
               access_token: res.access_token,
             });
+
+            sessionStorage.setItem('user', JSON.stringify(userData));
           }
 
           this._router.navigateByUrl('/dashboard');
