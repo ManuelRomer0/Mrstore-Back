@@ -33,6 +33,7 @@ export class Dashboard implements OnInit {
   loadUsers() {
     this.dashboardService.getUsers().subscribe({
       next: (users) => {
+        console.log(users);
         this.users = users.map((u) => ({
           ...u,
           username: u.username ?? 'Sin username', // nunca null
@@ -49,10 +50,7 @@ export class Dashboard implements OnInit {
 
   // Cargar el username de la sesión actual
   loadSessionUser() {
-    const session = this.authStateService.getSession();
-    if (session && session.user) {
-      this.username = session.user.username ?? 'Usuario';
-    }
+    this.username = JSON.parse(localStorage.getItem('user')!).username;
   }
 
   logout() {

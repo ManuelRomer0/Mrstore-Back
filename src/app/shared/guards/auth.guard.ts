@@ -6,7 +6,6 @@ export const privateGuard = (): CanActivateFn => {
   return () => {
     const AuthState = inject(AuthStateService);
     if (!AuthState.isAuthenticated()) {
-      console.log('Hola');
       AuthState.logOut();
       return false;
     }
@@ -19,7 +18,6 @@ export const publicGuard = (): CanActivateFn => {
     const AuthState = inject(AuthStateService);
     const router = inject(Router);
     const session = AuthState.getSession();
-    console.log('Hola');
 
     if (session) {
       router.navigateByUrl('/dashboard');

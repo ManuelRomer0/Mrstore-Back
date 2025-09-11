@@ -6,6 +6,7 @@ import { StorageService } from 'src/app/shared/data-access/storage.service';
 import { LoginResponse } from './auth.models';
 import { AuthStateService } from 'src/app/shared/data-access/auth.state.service';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,8 @@ export class AuthService {
 
   constructor(
     private readonly _authStateService: AuthStateService,
-    private readonly _router: Router
+    private readonly _router: Router,
+    private readonly jwtHelper: JwtHelperService
   ) {}
 
   signUp(
@@ -42,6 +44,9 @@ export class AuthService {
             this._authStateService.setRemember({
               access_token: res.access_token,
             });
+
+            const userData = this.jwtHelper.decodeToken(res.access_token);
+            localStorage.setItem('user', JSON.stringify(userData));
           }
 
           this._router.navigateByUrl('/dashboard');
