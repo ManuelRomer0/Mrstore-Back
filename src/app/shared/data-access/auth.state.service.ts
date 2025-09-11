@@ -1,35 +1,53 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({ providedIn: 'root' })
 export class AuthStateService {
-    private sessionKey = 'session';
-    private rememberKey = 'rememberedIdentifier';
+  private sessionKey = 'session';
+  private rememberKey = 'rememberedIdentifier';
 
-    setSession(session: { access_token: string }) {
-        sessionStorage.setItem(this.sessionKey, JSON.stringify(session));
-    }
+  constructor(
+    private readonly jwtHelper: JwtHelperService,
+    private readonly _router: Router
+  ) {}
 
-    getSession() {
-        const session = sessionStorage.getItem(this.sessionKey);
-        return session ? JSON.parse(session) : null;
-    }
+  setSession(session: { access_token: string }) {
+    sessionStorage.setItem(this.sessionKey, JSON.stringify(session));
+  }
 
-    clearSession() {
-        sessionStorage.removeItem(this.sessionKey);
-    }
+  getSession() {
+    const session =
+      sessionStorage.getItem(this.sessionKey) ||
+      localStorage.getItem(this.sessionKey);
+    return session ? JSON.parse(session) : null;
+  }
 
-    setRemember(identifier: string, remember: boolean) {
-        if (remember) {
-            localStorage.setItem(this.rememberKey, identifier);
-        } else {
-            localStorage.removeItem(this.rememberKey);
-        }
-    }
+  logOut() {
+    sessionStorage.clear();
+    localStorage.clear();
+    this._router.navigateByUrl('/log-in');
+  }
 
-    getRememberedIdentifier(): string | null {
-        return localStorage.getItem(this.rememberKey);
-    }
-    isLoggedIn(): boolean {
-        return !!this.getSession();
-    }
+  setRemember(session: { access_token: string }) {
+    localStorage.setItem(this.sessionKey, JSON.stringify(session));
+    localStorage.setItem('rememberMe', 'true');
+  }
+
+  getRememberedIdentifier(): string | null {
+    return localStorage.getItem(this.rememberKey);
+  }
+  isLoggedIn(): boolean {
+    return !!this.getSession();
+  }
+
+  isAuthenticated(): boolean {
+    return !this.jwtHelper.isTokenExpired(AuthStateService.token);
+  }
+
+  public static get token(): any {
+    const jwt =
+      localStorage.getItem('session') || sessionStorage.getItem('session');
+    return jwt ? JSON.parse(jwt).access_token : null;
+  }
 }

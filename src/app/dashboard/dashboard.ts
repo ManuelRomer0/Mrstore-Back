@@ -1,5 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { DashboardService, User as DashboardUser } from './data-access/dashboard.service';
+import {
+  DashboardService,
+  User as DashboardUser,
+} from './data-access/dashboard.service';
 import { AuthStateService } from '../shared/data-access/auth.state.service';
 import { Router } from '@angular/router';
 
@@ -30,7 +33,7 @@ export class Dashboard implements OnInit {
   loadUsers() {
     this.dashboardService.getUsers().subscribe({
       next: (users) => {
-        this.users = users.map(u => ({
+        this.users = users.map((u) => ({
           ...u,
           username: u.username ?? 'Sin username', // nunca null
         }));
@@ -53,8 +56,7 @@ export class Dashboard implements OnInit {
   }
 
   logout() {
-    this.authStateService.clearSession();
+    this.authStateService.logOut();
     this.router.navigateByUrl('/log-in');
   }
 }
-
