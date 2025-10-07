@@ -61,6 +61,7 @@ export default class SignUp implements OnInit {
 
         // Redirigir al dashboard
         this._router.navigateByUrl('/dashboard');
+        
       },
       error: (err) => {
         console.error('Error signup:', err);

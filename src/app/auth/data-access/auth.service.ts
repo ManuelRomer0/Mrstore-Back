@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { StorageService } from 'src/app/shared/data-access/storage.service';
 import { LoginResponse } from './auth.models';
 import { AuthStateService } from 'src/app/shared/data-access/auth.state.service';
 import { Router } from '@angular/router';
@@ -13,7 +12,6 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class AuthService {
   private _http = inject(HttpClient);
-  private _storage = inject(StorageService);
 
   constructor(
     private readonly _authStateService: AuthStateService,
@@ -22,6 +20,7 @@ export class AuthService {
   ) {}
 
   signUp(
+    
     identifier: string,
     password: string,
     confirmPassword: string

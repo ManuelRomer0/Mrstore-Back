@@ -1,18 +1,137 @@
-<div class="min-h-screen flex flex-col items-center justify-center bg-gray-100 relative">
+<div class="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-gray-200 relative">
 
     <!-- Botón de Cerrar Sesión -->
     <button (click)="logout()"
-        class="absolute top-4 right-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow-md transition duration-300 ease-in-out">
+        class="absolute top-4 right-4 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg shadow-md transition duration-300 ease-in-out">
         Cerrar sesión
     </button>
 
     <!-- Contenido de bienvenida -->
-    <div class="bg-white shadow-lg rounded-2xl p-8 text-center max-w-md w-full">
-        <h1 class="text-3xl font-bold text-gray-800">
-            ¡Bienvenido, <span class="text-blue-600">{{username}}</span>! 👋
+    <div class="bg-gray-800 shadow-lg rounded-2xl p-8 text-center max-w-md w-full">
+        <h1 class="text-3xl font-bold text-gray-100">
+            ¡Bienvenido, <span class="text-blue-400">{{username}}</span>! 👋
         </h1>
-        <p class="mt-4 text-gray-600">
+        <p class="mt-4 text-gray-400">
             Nos alegra verte de nuevo en tu panel de control.
         </p>
     </div>
 </div>
+
+<!-- TABLA LATERAL IZQUIERDA -->
+<aside
+    class="max-w-62.5 ease-nav-brand z-50 absolute inset-y-0 my-4 ml-4 block w-full -translate-x-full flex-wrap items-center justify-between overflow-y-auto rounded-2xl border border-gray-700 bg-gray-900 p-0 shadow-lg transition-transform duration-200 xl:left-0 xl:translate-x-0 text-gray-300"
+    id="sidenav-main" data-sidebar="true" data-sidebar-value="392">
+
+    <div class="h-19.5">
+        <i class="absolute top-0 right-0 hidden p-4 opacity-50 cursor-pointer fas fa-times text-gray-400 xl:hidden"
+            sidenav-close="" aria-hidden="true"></i>
+        <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-gray-200 font-semibold" href="http://localhost:4200/log-in">
+            <img src="https://loopple.s3.eu-west-3.amazonaws.com/images/AXfyiWHb37otVqun3gpDA2vumN7JvgfTyxZ2CSDZ.png"
+                class="inline h-full max-w-full transition-all duration-200 ease-in-out max-h-8" alt="main_logo">
+            <span class="ml-1">MrStore Administración</span>
+        </a>
+    </div>
+
+    <hr class="h-px mt-0 border-t border-gray-700">
+
+    <div class="items-center block w-auto max-h-screen overflow-auto grow basis-full">
+        <ul class="flex flex-col pl-0 mb-0">
+
+            <!-- Panel -->
+            <li class="mt-0.5 w-full">
+                <a class="py-2.7 text-sm my-0 mx-4 flex items-center whitespace-nowrap px-4 rounded-lg transition-colors hover:bg-gray-800"
+                    href="javascript:;">
+                    <div
+                        class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-gray-700 text-white">
+                        🏠
+                    </div>
+                    <span class="ml-1">Panel</span>
+                </a>
+            </li>
+
+            <!-- Tablas -->
+            <li class="mt-0.5 w-full">
+                <a class="py-2.7 text-sm my-0 mx-4 flex items-center whitespace-nowrap px-4 rounded-lg transition-colors hover:bg-gray-800"
+                    href="javascript:;">
+                    <div
+                        class="bg-gradient-to-tl from-purple-700 to-pink-500 mr-2 flex h-8 w-8 items-center justify-center rounded-lg text-white">
+                        📊
+                    </div>
+                    <span class="ml-1">Tablas</span>
+                </a>
+            </li>
+
+            <!-- Facturación -->
+            <li class="mt-0.5 w-full">
+                <a class="py-2.7 text-sm my-0 mx-4 flex items-center whitespace-nowrap px-4 rounded-lg transition-colors hover:bg-gray-800"
+                    href="javascript:;">
+                    <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-gray-700 text-white">
+                        💳
+                    </div>
+                    <span class="ml-1">Facturación</span>
+                </a>
+            </li>
+
+            <!-- Catálogo -->
+            <li class="mt-0.5 w-full">
+                <a class="py-2.7 text-sm my-0 mx-4 flex items-center whitespace-nowrap px-4 rounded-lg transition-colors hover:bg-gray-800"
+                    href="javascript:;">
+                    <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-gray-700 text-white">
+                        📦
+                    </div>
+                    <span class="ml-1">Catálogo</span>
+                </a>
+            </li>
+
+            <!-- Configuración -->
+            <li class="mt-0.5 w-full">
+                <a class="py-2.7 text-sm my-0 mx-4 flex items-center whitespace-nowrap px-4 rounded-lg transition-colors hover:bg-gray-800"
+                    href="javascript:;">
+                    <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-gray-700 text-white">
+                        ⚙️
+                    </div>
+                    <span class="ml-1">Configuración</span>
+                </a>
+            </li>
+
+            <!-- Panel de Usuario -->
+            <li class="w-full mt-4">
+                <h6 class="pl-6 ml-2 font-bold uppercase text-xs text-gray-400">Panel de Usuario</h6>
+            </li>
+
+            <!-- Perfil -->
+            <li class="mt-0.5 w-full">
+                <a class="py-2.7 text-sm my-0 mx-4 flex items-center whitespace-nowrap px-4 rounded-lg transition-colors hover:bg-gray-800"
+                    href="javascript:;">
+                    <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-gray-700 text-white">
+                        👤
+                    </div>
+                    <span class="ml-1">Perfil</span>
+                </a>
+            </li>
+
+            <!-- Iniciar Sesión -->
+            <li class="mt-0.5 w-full">
+                <a class="py-2.7 text-sm my-0 mx-4 flex items-center whitespace-nowrap px-4 rounded-lg transition-colors hover:bg-gray-800"
+                    href="http://localhost:4200/log-in">
+                    <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-gray-700 text-white">
+                        🔑
+                    </div>
+                    <span class="ml-1">Iniciar Sesión</span>
+                </a>
+            </li>
+
+            <!-- Crear Cuenta -->
+            <li class="mt-0.5 w-full">
+                <a class="py-2.7 text-sm my-0 mx-4 flex items-center whitespace-nowrap px-4 rounded-lg transition-colors hover:bg-gray-800"
+                    href="http://localhost:4200/sign-up">
+                    <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-gray-700 text-white">
+                        ✨
+                    </div>
+                    <span class="ml-1">Crear Cuenta</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</aside>
