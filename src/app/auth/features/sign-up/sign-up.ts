@@ -71,7 +71,6 @@ export default class SignUp implements OnInit {
     }
 
     this.authService.signUp(signUpDto).subscribe({
-      next: (_) => {},
       error: (err) => {
         console.error('Error signup:', err);
         alert('No se pudo crear el usuario');

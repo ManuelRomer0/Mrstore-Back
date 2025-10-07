@@ -46,12 +46,23 @@ export class Dashboard implements OnInit {
       },
     });
   }
-
+ñ
   // Cargar el username de la sesión actual
   loadSessionUser() {
-    this.username = JSON.parse(
-      (localStorage.getItem('user') || sessionStorage.getItem('user'))!
-    ).username;
+    const session = this.authStateService.getSession();
+
+    if (!session) {
+      console.warn('No hay sesión activa');
+      return;
+    }
+
+    try {
+      const payload = JSON.parse(atob(session.access_token.split('.')[1]));
+      this.username = payload.username ?? 'Usuario'; // valor por defecto
+    } catch (error) {
+      console.error('Error leyendo el token:', error);
+      this.username = 'Usuario';
+    }
   }
 
   logout() {

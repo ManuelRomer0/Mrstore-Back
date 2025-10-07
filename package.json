@@ -2,6 +2,7 @@
   "name": "front-end",
   "version": "0.0.0",
   "scripts": {
+    "electron:serve": "npm run build && electron .",
     "start": "cross-env SASS_QUIET_DEPS=true ng serve",
     "build": "cross-env SASS_QUIET_DEPS=true ng build",
     "test": "cross-env SASS_QUIET_DEPS=true ng test",
@@ -40,6 +41,7 @@
     "@types/jasmine": "~5.1.0",
     "autoprefixer": "^10.4.21",
     "cross-env": "^10.0.0",
+    "electron": "^38.2.1",
     "jasmine-core": "~5.8.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",

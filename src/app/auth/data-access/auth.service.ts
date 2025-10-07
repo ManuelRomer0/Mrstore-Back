@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { StorageService } from 'src/app/shared/data-access/storage.service';
 import { LoginResponse } from './auth.models';
 import { AuthStateService } from 'src/app/shared/data-access/auth.state.service';
 import { Router } from '@angular/router';
@@ -14,7 +13,6 @@ import { LogInDto, SignUpDto } from 'src/app/shared/dto/auth.dto';
 })
 export class AuthService {
   private _http = inject(HttpClient);
-  private _storage = inject(StorageService);
 
   constructor(
     private readonly _authStateService: AuthStateService,

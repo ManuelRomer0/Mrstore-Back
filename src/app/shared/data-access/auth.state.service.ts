@@ -12,7 +12,7 @@ export class AuthStateService {
     private readonly _router: Router
   ) {}
 
-  setSession(session: { access_token: string }) {
+  setSession(session: { access_token: string}) {
     sessionStorage.setItem(this.sessionKey, JSON.stringify(session));
   }
 
@@ -50,4 +50,8 @@ export class AuthStateService {
       localStorage.getItem('session') || sessionStorage.getItem('session');
     return jwt ? JSON.parse(jwt).access_token : null;
   }
+  clearSession() {
+    localStorage.removeItem(this.sessionKey);
+  }
 }
+
