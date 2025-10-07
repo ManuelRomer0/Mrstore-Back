@@ -33,7 +33,6 @@ export class Dashboard implements OnInit {
   loadUsers() {
     this.dashboardService.getUsers().subscribe({
       next: (users) => {
-        console.log(users);
         this.users = users.map((u) => ({
           ...u,
           username: u.username ?? 'Sin username', // nunca null

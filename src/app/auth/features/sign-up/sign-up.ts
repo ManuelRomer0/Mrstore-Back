@@ -1,13 +1,21 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { AuthService } from '../../data-access/auth.service';
 import { Router } from '@angular/router';
 import { AuthStateService } from 'src/app/shared/data-access/auth.state.service';
+import { SignUpDto } from 'src/app/shared/dto/auth.dto';
 
 type SignUpForm = {
-  identifier: FormControl<string>;
-  password: FormControl<string>;
-  confirmPassword: FormControl<string>;
+  username: FormControl<string | null>;
+  email: FormControl<string | null>;
+  password: FormControl<string | null>;
+  confirmPassword: FormControl<string | null>;
 };
 
 @Component({
@@ -20,25 +28,32 @@ type SignUpForm = {
 export default class SignUp implements OnInit {
   form!: FormGroup<SignUpForm>;
 
-  private _formBuilder = inject(FormBuilder);
-  private _authService = inject(AuthService);
-  private _router = inject(Router);
-  private _authStateService = inject(AuthStateService);
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly authService: AuthService,
+    private readonly router: Router,
+    private readonly authStateService: AuthStateService
+  ) {}
 
   ngOnInit(): void {
-    this.form = this._formBuilder.group({
-      identifier: new FormControl('', {
-        nonNullable: true,
-        validators: [Validators.required, Validators.minLength(3)],
-      }),
-      password: new FormControl('', {
-        nonNullable: true,
-        validators: [Validators.required, Validators.minLength(6)],
-      }),
-      confirmPassword: new FormControl('', {
-        nonNullable: true,
-        validators: [Validators.required],
-      }),
+    this.form = this.fb.group<SignUpForm>({
+      username: this.fb.control(null, [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
+      email: this.fb.control(null, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.email,
+      ]),
+      password: this.fb.control(null, [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
+      confirmPassword: this.fb.control(null, [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
     });
   }
 
@@ -48,20 +63,15 @@ export default class SignUp implements OnInit {
       return;
     }
 
-    const { identifier, password, confirmPassword } = this.form.getRawValue();
+    const signUpDto = this.form.getRawValue() as SignUpDto;
 
-    if (password !== confirmPassword) {
+    if (signUpDto.password !== signUpDto.confirmPassword) {
       alert('Las contraseñas no coinciden');
       return;
     }
 
-    this._authService.signUp(identifier, password, confirmPassword).subscribe({
-      next: (res) => {
-        if (res.access_token) this._authStateService.setSession({ access_token: res.access_token });
-
-        // Redirigir al dashboard
-        this._router.navigateByUrl('/dashboard');
-      },
+    this.authService.signUp(signUpDto).subscribe({
+      next: (_) => {},
       error: (err) => {
         console.error('Error signup:', err);
         alert('No se pudo crear el usuario');

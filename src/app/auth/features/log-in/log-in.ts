@@ -9,6 +9,7 @@ import {
 import { AuthService } from '../../data-access/auth.service';
 import { Router } from '@angular/router';
 import { AuthStateService } from 'src/app/shared/data-access/auth.state.service';
+import { LogInDto } from 'src/app/shared/dto/auth.dto';
 
 type LoginForm = {
   identifier: FormControl<string>;
@@ -54,8 +55,6 @@ export default class LogIn implements OnInit {
       return;
     }
 
-    const { identifier, password, rememberMe } = this.form.getRawValue();
-
-    this._authService.logIn(identifier, password, rememberMe);
+    this._authService.logIn(this.form.getRawValue() as LogInDto);
   }
 }
